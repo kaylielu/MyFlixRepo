@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.kaylie.flixster.models.Movie;
 import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         ImageView ivPoster = (ImageView) convertView.findViewById(R.id.ivPoster);
 
         // Populate the data into the template view using the data object
-        tvTitle.setText(movie.title);
+        //tvTitle.setText(movie.title);
 
         Log.d("MoviesAdapter", "Position: " + position);
         String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
