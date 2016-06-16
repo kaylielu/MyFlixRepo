@@ -33,40 +33,53 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        //Get the data item for the posiiton
-        Movie movie = getItem(position);
+    public int getViewTypeCount() {
+        return 2;
+    }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (getItem(position).getRating()>=5) {
+            return 1;
+        }else {
+            return 0;
+        }
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Get the data item for this position
+        Movie movie = getItem(position);
+//
         ViewHolder viewHolder;
-        //check the existing view being reused
-        if (convertView == null){
+        Log.d("entered", "true");
+
+        int type = getItemViewType(position);
+        // Check if an existing view is being reused, otherwise inflate the view
+        if (convertView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.item_movie, parent, false);
-            viewHolder.name = (TextView)convertView.findViewById(R.id.tvTitle);
-            viewHolder.overview = (TextView)convertView.findViewById(R.id.tvOverview);
-            viewHolder.image = (ImageView) convertView.findViewById(R.id.ivPoster);
-            convertView.setTag(viewHolder);
 
+
+            convertView = getInflatedLayoutForType(type);
+            Log.d("view", "the number is " + type);
+            if(type != 1) {
+                viewHolder.name = (TextView) convertView.findViewById(R.id.tvTitle);
+                viewHolder.overview = (TextView) convertView.findViewById(R.id.tvOverview);
+            }
+            viewHolder.image = (ImageView) convertView.findViewById(R.id.ivPoster);
+
+            convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        viewHolder.name.setText(movie.getOriginalTitle());
-        viewHolder.overview.setText(movie.getOverview());
-        viewHolder.image.setImageResource(0);
-//        // find the image view
-//        ImageView ivImage = (ImageView) convertView.findViewById(R.id.ivPoster);
-//        ivImage.setImageResource(0);
+        if(type != 1) {
 
-//        TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-//        TextView tvOverview = (TextView) convertView.findViewById(R.id.tvOverview);
-
-//        tvTitle.setText(movie.getOriginalTitle());
-//        tvOverview.setText(movie.getOverview());
-
-        // Populate the data into the template view using the data object
-        //tvTitle.setText(movie.title);
+            viewHolder.name.setText(movie.getOriginalTitle());
+            viewHolder.overview.setText(movie.getOverview());
+            viewHolder.image.setImageResource(0);
+        }
 
         if(getContext().getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT) {
             Picasso.with(getContext()).load(movie.getPosterPath()).transform(new RoundedCornersTransformation(10, 10)).placeholder(R.drawable.movie).into(viewHolder.image);
@@ -74,8 +87,20 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             Picasso.with(getContext()).load(movie.getBackDropPath()).transform(new RoundedCornersTransformation(10, 10)).placeholder(R.drawable.movie).into(viewHolder.image);
         }
 
+        if(type == 1){
+            Picasso.with(getContext()).load(movie.getBackDropPath()).transform(new RoundedCornersTransformation(10, 10)).placeholder(R.drawable.movie).into(viewHolder.image);
+        }
 
+
+        // Return the completed view to render on screen
         return convertView;
+    }
 
+    private View getInflatedLayoutForType(int type){
+        if (type == 1){
+            return LayoutInflater.from(getContext()).inflate(R.layout.item_movie_popular, null);
+        }else{
+            return LayoutInflater.from(getContext()).inflate(R.layout.item_movie,null);
+        }
     }
 }

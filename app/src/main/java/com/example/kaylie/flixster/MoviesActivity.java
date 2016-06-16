@@ -1,12 +1,17 @@
 package com.example.kaylie.flixster;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.kaylie.flixster.adapters.MovieArrayAdapter;
 import com.example.kaylie.flixster.models.Movie;
@@ -62,6 +67,22 @@ public class MoviesActivity extends AppCompatActivity {
         movieAdapter = new MovieArrayAdapter(this,movies);
         lvItems.setAdapter(movieAdapter);
 
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<? > arg0, View item, int pos,
+                                    long id) {
+
+                Log.d("position", "" +pos);
+                Intent expose = new Intent(MoviesActivity.this, MovieInformation.class);
+                expose.putExtra("pos", pos);
+                expose.putExtra("rating", movies.get(pos).getRating());
+                expose.putExtra("synopsis", movies.get(pos).getOverview());
+                expose.putExtra("popularity", movies.get(pos).getPopularity());
+                expose.putExtra("title", movies.get(pos).getOriginalTitle());
+                startActivity(expose);
+            }
+
+        });
 
         client = new AsyncHttpClient();
         client.get(url, new JsonHttpResponseHandler(){
@@ -101,6 +122,7 @@ public class MoviesActivity extends AppCompatActivity {
 
     }
 
+
     public void fetchTimelineAsync() {
         // Send the network request to fetch the updated data
         // `client` here is an instance of Android Async HTTP
@@ -128,5 +150,6 @@ public class MoviesActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }
