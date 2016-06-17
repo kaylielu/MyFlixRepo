@@ -4,12 +4,15 @@
         android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
         android:id="@+id/ivPoster"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="30dp"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -21,7 +24,9 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivPoster"
         android:layout_toEndOf="@+id/ivPoster"
-        android:padding="16dp"/>
+        android:textColor="#FFFFFF"
+        android:paddingRight="30dp"
+        android:paddingLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,6 +35,8 @@
         android:id="@+id/tvOverview"
         android:layout_below="@+id/tvTitle"
         android:layout_toRightOf="@+id/ivPoster"
-        android:padding="16dp"
+        android:paddingRight="30dp"
+        android:paddingLeft="10dp"
+        android:textColor="#FFFFFF"
         android:layout_toEndOf="@+id/ivPoster" />
 </RelativeLayout>

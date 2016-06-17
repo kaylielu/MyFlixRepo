@@ -24,6 +24,10 @@ public class MovieInformation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_information);
+
+        //actionBar.setIcon(R.drawable.airbnb_icon);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.movie_icon);
         rating = getIntent().getDoubleExtra("rating",0);
         popularity = getIntent().getDoubleExtra("popularity",0);
         synopsis = getIntent().getStringExtra("synopsis");

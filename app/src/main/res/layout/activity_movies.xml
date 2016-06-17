@@ -7,7 +7,10 @@
     android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.kaylie.flixster.MoviesActivity">
+    tools:context="com.example.kaylie.flixster.MoviesActivity"
+    android:background="@drawable/movie_background_6"
+    android:layout_centerHorizontal="true">
+
 
 
         <ListView
