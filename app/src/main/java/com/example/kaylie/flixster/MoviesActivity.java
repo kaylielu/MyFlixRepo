@@ -43,7 +43,7 @@ public class MoviesActivity extends AppCompatActivity {
 
         //actionBar.setIcon(R.drawable.airbnb_icon);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.movie_icon);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
@@ -77,7 +77,7 @@ public class MoviesActivity extends AppCompatActivity {
                                     long id) {
 
                 Log.d("position", "" +pos);
-                Intent expose = new Intent(MoviesActivity.this, MovieInformation.class);
+                Intent expose = new Intent(MoviesActivity.this, MovieInformationActivity.class);
                 expose.putExtra("pos", pos);
                 expose.putExtra("rating", movies.get(pos).getRating());
                 expose.putExtra("synopsis", movies.get(pos).getOverview());
