@@ -25,6 +25,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class MoviesActivity extends AppCompatActivity {
@@ -40,6 +42,7 @@ public class MoviesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
+        ButterKnife.bind(this);
 
         //actionBar.setIcon(R.drawable.airbnb_icon);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -66,9 +69,10 @@ public class MoviesActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
 
-        lvItems = (ListView)findViewById(R.id.lvMovies);
+
         movies = new ArrayList<>();
         movieAdapter = new MovieArrayAdapter(this,movies);
+        lvItems = (ListView)findViewById(R.id.lvMovies);
         lvItems.setAdapter(movieAdapter);
 
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -76,13 +80,13 @@ public class MoviesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<? > arg0, View item, int pos,
                                     long id) {
 
-                Log.d("position", "" +pos);
                 Intent expose = new Intent(MoviesActivity.this, MovieInformationActivity.class);
                 expose.putExtra("pos", pos);
                 expose.putExtra("rating", movies.get(pos).getRating());
                 expose.putExtra("synopsis", movies.get(pos).getOverview());
                 expose.putExtra("popularity", movies.get(pos).getPopularity());
                 expose.putExtra("title", movies.get(pos).getOriginalTitle());
+                expose.putExtra("poster", movies.get(pos).getPosterPath());
                 startActivity(expose);
             }
 
@@ -98,7 +102,6 @@ public class MoviesActivity extends AppCompatActivity {
                     movieJsonResults = response.getJSONArray("results");
                     movies.addAll(Movie.fromJSONArray(movieJsonResults));
                     movieAdapter.notifyDataSetChanged();
-                    Log.d("debug", movies.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
