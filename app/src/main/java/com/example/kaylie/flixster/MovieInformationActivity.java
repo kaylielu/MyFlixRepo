@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class MovieInformationActivity extends AppCompatActivity {
     double popularity;
     String synopsis;
     String title;
+    String posterPath;
     int pos;
 
     @Override
@@ -34,6 +36,7 @@ public class MovieInformationActivity extends AppCompatActivity {
         popularity = getIntent().getDoubleExtra("popularity",0);
         synopsis = getIntent().getStringExtra("synopsis");
         title = getIntent().getStringExtra("title");
+        posterPath = getIntent().getStringExtra("poster");
 
 
         ratingBar = (RatingBar)findViewById(R.id.rbRatingBar);
@@ -54,6 +57,10 @@ public class MovieInformationActivity extends AppCompatActivity {
 
         TextView popularityView = (TextView)findViewById(R.id.tvPopularity);
         popularityView.setText("" + popularity);
+
+        ImageView posterBackground = (ImageView)findViewById(R.id.imageView);
+
+        Picasso.with(this).load(posterPath).placeholder(R.drawable.movie).into(posterBackground);
 
         if(this.getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT) {
 
