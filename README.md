@@ -50,6 +50,7 @@ When I was trying to make the poster image show up in the separate activity, I h
 
 ## License
 
+i
     Copyright [2016] [Kaylie Lu]
 
     Licensed under the Apache License, Version 2.0 (the "License");
