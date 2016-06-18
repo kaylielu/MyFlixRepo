@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent" android:layout_height="fill_parent"
-    android:scrollbars="vertical">
+    android:scrollbars="vertical"
+    android:fillViewport="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:gravity="fill_horizontal|center_vertical|fill_vertical|center_horizontal"
+        android:backgroundTint="#443838">
 
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/imageView"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true" />
+            android:scaleType="fitXY"
+            android:layout_gravity="center"/>
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +35,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/tvTitle"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FFFFFF"/>
 
         <RatingBar
             android:id="@+id/rbRatingBar"
@@ -57,7 +58,8 @@
             android:layout_below="@+id/rbRatingBar"
             android:layout_alignLeft="@+id/rbRatingBar"
             android:layout_alignStart="@+id/rbRatingBar"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -66,7 +68,8 @@
             android:id="@+id/tvSynopsis"
             android:layout_alignLeft="@+id/tvRatingBar"
             android:layout_alignStart="@+id/tvRatingBar"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FFFFFF"/>
 
 
         <TextView
@@ -75,7 +78,8 @@
             android:text="@string/popularity"
             android:id="@+id/tvPopularityTitle"
             android:padding="10dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,10 +88,11 @@
             android:id="@+id/tvPopularity"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FFFFFF"/>
 
 
-    </LinearLayout>
+        </LinearLayout>
 
     </RelativeLayout>
 

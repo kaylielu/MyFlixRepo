@@ -1,7 +1,10 @@
 package com.example.kaylie.flixster;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +46,9 @@ public class MovieInformationActivity extends AppCompatActivity {
         if(ratingBar !=null)
         ratingBar.setRating((float)(rating/2));
 
+        Drawable progress = ratingBar.getProgressDrawable();
+        DrawableCompat.setTint(progress, Color.WHITE);
+
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/GREEB___.ttf");
 
 
@@ -61,6 +67,9 @@ public class MovieInformationActivity extends AppCompatActivity {
         ImageView posterBackground = (ImageView)findViewById(R.id.imageView);
 
         Picasso.with(this).load(posterPath).placeholder(R.drawable.movie).into(posterBackground);
+        posterBackground.setScaleType(ImageView.ScaleType.FIT_XY);
+        posterBackground.setAdjustViewBounds(true);
+
 
         if(this.getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT) {
 
